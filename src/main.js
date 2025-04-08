@@ -1,10 +1,10 @@
-import { getImagesByQuery } from './pixabay-api';
+import { getImagesByQuery } from './js/pixabay-api';
 import {
   createGallery,
   clearGallery,
   showLoader,
   hideLoader,
-} from './render-functions';
+} from './js/render-functions';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
@@ -41,5 +41,4 @@ form.addEventListener('submit', async event => {
   }
 });
 
-import 'css-loaders';
-import './styles.css';
+import './css/styles.css';
