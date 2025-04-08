@@ -42,3 +42,4 @@ form.addEventListener('submit', async event => {
 });
 
 import 'css-loaders';
+import './styles.css';
