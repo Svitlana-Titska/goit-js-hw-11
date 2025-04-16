@@ -1,33 +1,42 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+const gallery = document.querySelector('.gallery');
+const loader = document.querySelector('.loader');
+
+const lightbox = new SimpleLightbox('.gallery a');
+
 export function createGallery(images) {
-  const gallery = document.querySelector('.gallery');
   const markup = images
     .map(
-      ({ webformatURL, largeImageURL, tags }) =>
-        `<li>
-          <a href="${largeImageURL}">
-            <img src="${webformatURL}" alt="${tags}" />
-          </a>
-        </li>`
+      image => `
+      <li class="gallery-item">
+        <a href="${image.largeImageURL}">
+          <img src="${image.webformatURL}" alt="${image.tags}" />
+        </a>
+        <div class="info">
+          <p>👍 ${image.likes}</p>
+          <p>👁️ ${image.views}</p>
+          <p>💬 ${image.comments}</p>
+          <p>⬇️ ${image.downloads}</p>
+        </div>
+      </li>
+    `
     )
     .join('');
-  gallery.innerHTML = markup;
 
-  const lightbox = new SimpleLightbox('.gallery a');
+  gallery.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
 }
 
 export function clearGallery() {
-  const gallery = document.querySelector('.gallery');
   gallery.innerHTML = '';
 }
 
 export function showLoader() {
-  document.querySelector('.loader').classList.add('visible');
+  loader.classList.remove('hidden');
 }
 
 export function hideLoader() {
-  document.querySelector('.loader').classList.remove('visible');
+  loader.classList.add('hidden');
 }
